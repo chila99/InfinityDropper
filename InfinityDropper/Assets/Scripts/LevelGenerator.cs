@@ -15,9 +15,15 @@ public class LevelGenerator : MonoBehaviour
     [Header("Platforms Parameters")]
     [SerializeField] private GameObject _platformPrefab;
     [SerializeField] private float _platformSize = 10;
+    [SerializeField] private float _minHoleX = 1;
+    [SerializeField] private float _maxHoleX = 5;
+    [SerializeField] private float _minHoleZ = 1;
+    [SerializeField] private float _maxHoleZ = 5;
 
     private Queue<GameObject> _platforms = new Queue<GameObject>();
     private Vector3 _lastPlatformPosition;
+    private int _numberOfPlatformsToRegenerateBorder = 5;
+    private int _nToRegenerateBorder = 0;
     
 
     // Start is called before the first frame update
@@ -47,6 +53,7 @@ public class LevelGenerator : MonoBehaviour
         {
             Vector3 newPlatformPosition = _lastPlatformPosition + Vector3.down * _distanceBetweenPlatforms;
             GameObject platform = Instantiate(_platformPrefab, transform);
+            platform.GetComponent<PlatformGenerator>().GeneratePlatform(_platformSize, _minHoleX, _maxHoleX, _minHoleZ, _maxHoleZ, _distanceBetweenPlatforms);
             platform.transform.localPosition = newPlatformPosition;
             _platforms.Enqueue(platform);
             _lastPlatformPosition = newPlatformPosition;

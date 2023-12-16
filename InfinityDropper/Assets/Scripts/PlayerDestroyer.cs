@@ -6,10 +6,9 @@ public class PlayerDestroyer : MonoBehaviour
 {
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.GetComponent<Player>() != null)
         {
-            Destroy(other.gameObject);
-            Application.Quit();
+            Debug.Log("Player destroyed");
         }
     }
 }

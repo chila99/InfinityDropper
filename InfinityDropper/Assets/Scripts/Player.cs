@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -7,6 +5,13 @@ public class Player : MonoBehaviour
     [SerializeField] private float _speed = 3.5f;
     private PlayerInput _playerInput;
     private Rigidbody _rb;
+    private float _score = 0;
+    private float _startingY = 0;
+
+    public float Score
+    {
+        get => _score;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -14,11 +19,13 @@ public class Player : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         _playerInput = new PlayerInput();
         _playerInput.Player.Enable();
+        _startingY = transform.position.y;
     }
 
     // Update is called once per frame
     void Update()
     {
+        _score = -transform.position.y + _startingY;
     }
 
     void FixedUpdate()

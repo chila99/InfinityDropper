@@ -9,6 +9,7 @@ public class PlayerDestroyer : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Destroy(other.gameObject);
+            Application.Quit();
         }
     }
 }

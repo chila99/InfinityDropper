@@ -22,9 +22,7 @@ public class LevelGenerator : MonoBehaviour
 
     private Queue<GameObject> _platforms = new Queue<GameObject>();
     private Vector3 _lastPlatformPosition;
-    private int _numberOfPlatformsToRegenerateBorder = 5;
-    private int _nToRegenerateBorder = 0;
-    
+    private GameObject _roof;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +32,11 @@ public class LevelGenerator : MonoBehaviour
             _player = FindObjectOfType<Player>();
         }
         _lastPlatformPosition = transform.position;
+        _roof = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        _roof.transform.parent = transform;
+        _roof.transform.localPosition = new Vector3(0, 0, 0);
+        _roof.transform.localScale = new Vector3(_platformSize, 1, _platformSize);
+        _player.transform.position = new Vector3(0, -_distanceToGenerate, 0);
     }
 
     // Update is called once per frame
@@ -62,13 +65,14 @@ public class LevelGenerator : MonoBehaviour
 
     private void CheckForPlayerOvertaking()
     {
-        // when player overpass one platform, generate new ones
+        // when player overpass two platform, generate new ones
         // if the height of the player is less than the height of the platform - the distance to generate
         // get the first platform in the queue
         GameObject firstPlatform = _platforms.Peek();
         if (_player.transform.position.y < firstPlatform.transform.position.y - _distanceToGenerate)
         {
             // destroy the first platform
+            _roof.transform.position = firstPlatform.transform.position;
             Destroy(firstPlatform);
             // remove the first platform from the queue
             _platforms.Dequeue();

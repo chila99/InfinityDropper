@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _dashSpeed = 1000f;
     [SerializeField] private float _dashRechargeTime = 2f;
     [SerializeField] private float _fallAcceleration = 0.5f;
+    [SerializeField] private float _startingFallSpeed = 1.5f;
     [SerializeField] private float _maxFallSpeed = 3.5f;
     private PlayerInput _playerInput;
     private Rigidbody _rb;
@@ -40,6 +41,7 @@ public class Player : MonoBehaviour
         _playerInput = new PlayerInput();
         _playerInput.Player.Enable();
         _startingY = transform.position.y;
+        _rb.velocity = new Vector3(0, -_startingFallSpeed, 0);
     }
 
     // Update is called once per frame

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
@@ -60,8 +61,9 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        float x = _playerInput.Player.Movement.ReadValue<Vector2>().x;
-        float z = _playerInput.Player.Movement.ReadValue<Vector2>().y;
+        float x = _playerInput.Player.Movement.ReadValue<Vector3>().x;
+        float z = _playerInput.Player.Movement.ReadValue<Vector3>().y;
+
         Vector3 playerVelocity = new Vector3(x, 0, z) * _speed;
         playerVelocity.y = _rb.velocity.y;
         _rb.velocity = playerVelocity;

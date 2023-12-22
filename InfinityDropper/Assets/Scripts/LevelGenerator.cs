@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
+    public float MinHoleX { get { return _minHoleX; } set { _minHoleX = value; } }
+    public float MaxHoleX { get { return _maxHoleX; } set { _maxHoleX = value; } }
+    public float MinHoleZ { get { return _minHoleZ; } set { _minHoleZ = value; } }
+    public float MaxHoleZ { get { return _maxHoleZ; } set { _maxHoleZ = value; } }
+    public float PlatformSize { get { return _platformSize; } private set { _platformSize = value; } }
+    public Color CurrentPlatformColor { get { return _platforms.Peek().GetComponentInChildren<Renderer>().material.color; } }
+
     // keep reference to the player so can be created new platforms and
     // deleted old ones
     [Header("Player Parameters")]

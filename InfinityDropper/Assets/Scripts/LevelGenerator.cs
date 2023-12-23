@@ -77,8 +77,8 @@ public class LevelGenerator : MonoBehaviour
                 // generate a random powerUP
                 GameObject powerUP = Instantiate(_powerUPs[Random.Range(0, _powerUPs.Length)], platform.transform);
                 // pick a random position on the platform
-                float randomX = Random.Range(-_platformSize / 2 - powerUP.transform.localScale.x / 2, _platformSize / 2 + powerUP.transform.localScale.x / 2);
-                float randomZ = Random.Range(-_platformSize / 2 - powerUP.transform.localScale.z / 2, _platformSize / 2 + powerUP.transform.localScale.z / 2);
+                float randomX = Random.Range(-_platformSize / 2 + powerUP.transform.localScale.x, _platformSize / 2 - powerUP.transform.localScale.x);
+                float randomZ = Random.Range(-_platformSize / 2 + powerUP.transform.localScale.z, _platformSize / 2 - powerUP.transform.localScale.z);
                 Vector3 powerUPPosition = new Vector3(randomX, 0, randomZ);
                 powerUP.transform.localPosition = powerUPPosition;
                 // move the powerUP up in the middle between the two platforms

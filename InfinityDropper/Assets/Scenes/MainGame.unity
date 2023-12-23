@@ -586,7 +586,7 @@ MonoBehaviour:
   _maxHoleZ: 10
   _powerUPs:
   - {fileID: 2034792851558015216, guid: 751ccdcc12f854487948ed4e2455b2d1, type: 3}
-  _powerUPProbability: 0.5
+  _powerUPProbability: 1
 --- !u!114 &694975531
 MonoBehaviour:
   m_ObjectHideFlags: 0

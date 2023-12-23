@@ -20,8 +20,9 @@ public class DifficultyManager : MonoBehaviour
     [SerializeField] private float _finaMaxlHoleZ = 3;
     [Header("Player Parameters")]
     [SerializeField] private Player _player;
-    [SerializeField] private float _finalPlayerSpeed = 10;
-    [SerializeField] private float _startingPlayerSpeed = 5;
+    [SerializeField] private float _timeToReachMaxSpeed = 1000;
+
+    private float _velocityChangeRate;
 
     // Start is called before the first frame update
     void Start()
@@ -39,7 +40,10 @@ public class DifficultyManager : MonoBehaviour
         {
             _player = FindObjectOfType<Player>();
         }
-        _player.FallSpeed = _startingPlayerSpeed;
+        _player.FallSpeed = _player.MinFallSpeed;
+
+        // calculate the rate of change of velocity
+        _velocityChangeRate = (_player.MaxFallSpeed - _player.MinFallSpeed) / _timeToReachMaxSpeed;
     }
 
     // Update is called once per frame
@@ -53,6 +57,7 @@ public class DifficultyManager : MonoBehaviour
         _levelGenerator.MaxHoleX = (int) Mathf.Lerp(_startingMaxHoleX, _finaMaxlHoleX, interpolate);
         _levelGenerator.MinHoleZ = (int) Mathf.Lerp(_startingMinHoleZ, _finalMinHoleZ, interpolate);
         _levelGenerator.MaxHoleZ = (int) Mathf.Lerp(_startingMaxHoleZ, _finaMaxlHoleZ, interpolate);
-        _player.FallSpeed = Mathf.Lerp(_startingPlayerSpeed, _finalPlayerSpeed, interpolate);
+
+        _player.FallSpeed += _velocityChangeRate * Time.deltaTime;
     }
 }

@@ -584,6 +584,9 @@ MonoBehaviour:
   _maxHoleX: 10
   _minHoleZ: 5
   _maxHoleZ: 10
+  _powerUPs:
+  - {fileID: 2034792851558015216, guid: 751ccdcc12f854487948ed4e2455b2d1, type: 3}
+  _powerUPProbability: 0.5
 --- !u!114 &694975531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -607,8 +610,7 @@ MonoBehaviour:
   _finalMinHoleZ: 1
   _finaMaxlHoleZ: 3
   _player: {fileID: 1553918807}
-  _finalPlayerSpeed: 30
-  _startingPlayerSpeed: 15
+  _timeToReachMaxSpeed: 1000
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -931,7 +933,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.5000076
+        value: 0.34757233
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -1023,79 +1025,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &6769958337944493836
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7215943589219203926, guid: 0323db0e388084c278d87f5b0e935f7a,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7215943589219203926, guid: 0323db0e388084c278d87f5b0e935f7a,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7215943589219203926, guid: 0323db0e388084c278d87f5b0e935f7a,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -299.81805
-      objectReference: {fileID: 0}
-    - target: {fileID: 7215943589219203926, guid: 0323db0e388084c278d87f5b0e935f7a,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -58.70497
-      objectReference: {fileID: 0}
-    - target: {fileID: 7215943589219203926, guid: 0323db0e388084c278d87f5b0e935f7a,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7215943589219203926, guid: 0323db0e388084c278d87f5b0e935f7a,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7215943589219203926, guid: 0323db0e388084c278d87f5b0e935f7a,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7215943589219203926, guid: 0323db0e388084c278d87f5b0e935f7a,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7215943589219203926, guid: 0323db0e388084c278d87f5b0e935f7a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7215943589219203926, guid: 0323db0e388084c278d87f5b0e935f7a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7215943589219203926, guid: 0323db0e388084c278d87f5b0e935f7a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8172476639444691544, guid: 0323db0e388084c278d87f5b0e935f7a,
-        type: 3}
-      propertyPath: m_Name
-      value: Cube
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0323db0e388084c278d87f5b0e935f7a, type: 3}
 --- !u!1001 &7174438154208650932
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1141,9 +1070,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4630206369203112640, guid: 6c510917504534b6ab69a09e2b41d274,
         type: 3}
+      propertyPath: _fallSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630206369203112640, guid: 6c510917504534b6ab69a09e2b41d274,
+        type: 3}
+      propertyPath: _maxFallSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630206369203112640, guid: 6c510917504534b6ab69a09e2b41d274,
+        type: 3}
       propertyPath: _trailRenderer
       value: 
       objectReference: {fileID: 1830772157}
+    - target: {fileID: 4630206369203112640, guid: 6c510917504534b6ab69a09e2b41d274,
+        type: 3}
+      propertyPath: _levelGenerator
+      value: 
+      objectReference: {fileID: 694975530}
     - target: {fileID: 4630206369203112640, guid: 6c510917504534b6ab69a09e2b41d274,
         type: 3}
       propertyPath: _startingFallSpeed

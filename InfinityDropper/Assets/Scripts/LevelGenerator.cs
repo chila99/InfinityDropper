@@ -26,6 +26,9 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private float _maxHoleX = 5;
     [SerializeField] private float _minHoleZ = 1;
     [SerializeField] private float _maxHoleZ = 5;
+    [Header("PowerUPs Parameters")]
+    [SerializeField] private GameObject[] _powerUPs;
+    [SerializeField] private float _powerUPProbability = 0.1f;
 
     private Queue<GameObject> _platforms = new Queue<GameObject>();
     private Vector3 _lastPlatformPosition;
@@ -67,6 +70,20 @@ public class LevelGenerator : MonoBehaviour
             platform.transform.localPosition = newPlatformPosition;
             _platforms.Enqueue(platform);
             _lastPlatformPosition = newPlatformPosition;
+
+            // decide if to generate a powerUP
+            if (Random.Range(0f, 1f) < _powerUPProbability)
+            {
+                // generate a random powerUP
+                GameObject powerUP = Instantiate(_powerUPs[Random.Range(0, _powerUPs.Length)], platform.transform);
+                // pick a random position on the platform
+                float randomX = Random.Range(-_platformSize / 2 - powerUP.transform.localScale.x / 2, _platformSize / 2 + powerUP.transform.localScale.x / 2);
+                float randomZ = Random.Range(-_platformSize / 2 - powerUP.transform.localScale.z / 2, _platformSize / 2 + powerUP.transform.localScale.z / 2);
+                Vector3 powerUPPosition = new Vector3(randomX, 0, randomZ);
+                powerUP.transform.localPosition = powerUPPosition;
+                // move the powerUP up in the middle between the two platforms
+                powerUP.transform.localPosition += Vector3.up * _distanceBetweenPlatforms / 2;
+            }
         }
     }
 
